@@ -19,10 +19,9 @@ class Solution:
         max_area = 0
         h1 = Pointer(0, height[0])
         h2 = Pointer(len(height) - 1, height[len(height) - 1])
-        # сделал шаг с одного конце, если выше, то из высот с двух концов взять меньшую,
+        # сделал шаг с одного конце, если выше, то охранить пару: индекс, высота
+        # из высот с двух концов взять меньшую,
         # умножить на расстояние между ними
-        # сохранять пару: высота и индекс с конца
-        # когда высота выше - взять из двух высот меньшую и умножм
         for i in range(len(height) // 2):
             index_from_end = len(height) - i - 1
             if height[i] > h1.value + 1:
@@ -30,7 +29,6 @@ class Solution:
                 h1.value = height[i]
 
                 # взять меньшее
-                smaller_height = 0
                 if h1.value < h2.value:
                     smaller_height = h1.value
                 else:
@@ -45,7 +43,6 @@ class Solution:
                 h2.index = index_from_end
                 h2.value = height[index_from_end]
                 # взять меньшее
-                smaller_height = 0
                 if h1.value < h2.value:
                     smaller_height = h1.value
                 else:
