@@ -19,39 +19,37 @@ class Solution:
         max_area = 0
         h1 = Pointer(0, height[0])
         h2 = Pointer(len(height) - 1, height[len(height) - 1])
-        # сделал шаг с одного конце, если выше, то охранить пару: индекс, высота
+        # сделал шаг с одного конце, если выше, то сохранить пару: индекс, высота
         # из высот с двух концов взять меньшую,
         # умножить на расстояние между ними
-        for i in range(len(height) // 2):
+        for i in range(len(height)):
             index_from_end = len(height) - i - 1
-            if height[i] > h1.value + 1:
+            if i == index_from_end:
+                break
+
+            if height[i] > h1.value:
                 h1.index = i
                 h1.value = height[i]
 
-                # взять меньшее
-                if h1.value < h2.value:
-                    smaller_height = h1.value
-                else:
-                    smaller_height = h2.value
-
-                # рассчитать расстояние, умножить на меньшую высоту, сравнить площадь с предыдущей
-                distance = len(height) - h1.index - h2.index
-                if max_area < smaller_height * distance:
-                    max_area = smaller_height * distance
-
-            if height[index_from_end] < h2.value + 1:
+            if height[index_from_end] > h2.value:
                 h2.index = index_from_end
                 h2.value = height[index_from_end]
-                # взять меньшее
-                if h1.value < h2.value:
-                    smaller_height = h1.value
-                else:
-                    smaller_height = h2.value
 
-                # рассчитать расстояние, умножить на меньшую высоту, сравнить площадь с предыдущей
-                distance = len(height) - h1.index - h2.index
-                if max_area < smaller_height * distance:
-                    max_area = smaller_height * distance
+            # взять меньшее
+            if h1.value < h2.value:
+                smaller_height = h1.value
+            else:
+                smaller_height = h2.value
+
+            # рассчитать расстояние, умножить на меньшую высоту, сравнить площадь с предыдущей
+            distance = h2.index - h1.index
+            if max_area < smaller_height * distance:
+                max_area = smaller_height * distance
+
+            # рассчитать расстояние, умножить на меньшую высоту, сравнить площадь с предыдущей
+            distance = len(height) - h1.index - h2.index
+            if max_area < smaller_height * distance:
+                max_area = smaller_height * distance
 
         return max_area
 
