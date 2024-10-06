@@ -46,11 +46,6 @@ class Solution:
             if max_area < smaller_height * distance:
                 max_area = smaller_height * distance
 
-            # рассчитать расстояние, умножить на меньшую высоту, сравнить площадь с предыдущей
-            distance = len(height) - h1.index - h2.index
-            if max_area < smaller_height * distance:
-                max_area = smaller_height * distance
-
         return max_area
 
 
