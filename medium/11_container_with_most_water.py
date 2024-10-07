@@ -17,41 +17,29 @@ class Pointer:
 class Solution:
     def maxArea(self, height: List[int]) -> int:
         max_area = 0
-        h1 = Pointer(0, height[0])
-        h2 = Pointer(len(height) - 1, height[len(height) - 1])
-        # сделал шаг с одного конце, если выше, то сохранить пару: индекс, высота
-        # из высот с двух концов взять меньшую,
-        # умножить на расстояние между ними
-        for i in range(len(height)):
-            index_from_end = len(height) - i - 1
-            if i == index_from_end:
-                break
+        left = Pointer(0, height[0])
+        right = Pointer(len(height) - 1, height[len(height) - 1])
 
-            if height[i] > h1.value:
-                h1.index = i
-                h1.value = height[i]
+        while left.index < right.index:
+            current_area = min(left.value, right.value) * (right.index - left.index)
+            if current_area > max_area:
+                max_area = current_area
 
-            if height[index_from_end] > h2.value:
-                h2.index = index_from_end
-                h2.value = height[index_from_end]
-
-            # взять меньшее
-            if h1.value < h2.value:
-                smaller_height = h1.value
+            if height[left.index] > height[right.index]:
+                right.index -= 1
+                right.value = height[right.index]
             else:
-                smaller_height = h2.value
-
-            # рассчитать расстояние, умножить на меньшую высоту, сравнить площадь с предыдущей
-            distance = h2.index - h1.index
-            if max_area < smaller_height * distance:
-                max_area = smaller_height * distance
+                left.index += 1
+                left.value = height[left.index]
 
         return max_area
 
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.maxArea([1,8,6,2,5,4,8,3,7]))
+    print(s.maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]))  # 49
+    print(s.maxArea([2, 1]))
+    print(s.maxArea([1, 2, 4, 3]))  # 4
 #
 # Example 1:
 #
