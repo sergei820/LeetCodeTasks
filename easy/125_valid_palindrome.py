@@ -23,25 +23,23 @@ if __name__ == '__main__':
     print(s.isPalindrome("A man, a plan, a canal: Panama"))
     print(s.isPalindrome("raceacar"))
     print(s.isPalindrome("0P"))
+
 # Example 1:
-#
 # Input: s = "A man, a plan, a canal: Panama"
 # Output: true
 # Explanation: "amanaplanacanalpanama" is a palindrome.
+
 # Example 2:
-#
 # Input: s = "race a car"
 # Output: false
 # Explanation: "raceacar" is not a palindrome.
+
 # Example 3:
-#
 # Input: s = " "
 # Output: true
 # Explanation: s is an empty string "" after removing non-alphanumeric characters.
 # Since an empty string reads the same forward and backward, it is a palindrome.
 #
-#
 # Constraints:
-#
 # 1 <= s.length <= 2 * 105
-# s consists only of printable ASCII characters.
+# s consists only of printable ASCII characters
