@@ -8,20 +8,41 @@ class Solution:
         """
         tmp_array = []
 
-        for i in range(len(nums1)):
-            if len(tmp_array) > 0 and (i >= m or tmp_array[0] < nums1[i]) and \
-                    (len(nums2) == 0 or nums2[0] >= tmp_array[0]):
-                if nums1[i] != 0:
+        for i in range(m):
+            if len(tmp_array) != 0 and len(nums2) != 0:
+                if tmp_array[0] >= nums1[i] <= nums2[0]:
+                    continue
+                elif tmp_array[0] < nums2[0]:
                     tmp_array.append(nums1[i])
-                nums1[i] = tmp_array[0]
-                del tmp_array[0]
+                    nums1[i] = tmp_array.pop(0)
+                else:
+                    tmp_array.append(nums1[i])
+                    nums1[i] = nums2.pop(0)
 
-            elif len(nums2) > 0 and (nums1[i] == 0 or nums1[i] > nums2[0] or i >= m):
-                if nums1[i] != 0:
+            elif len(tmp_array) != 0 and len(nums2) == 0:
+                if tmp_array[0] >= nums1[i]:
+                    continue
+                else:
                     tmp_array.append(nums1[i])
+                    nums1[i] = tmp_array.pop(0)
+            elif len(tmp_array) == 0 and len(nums2) != 0:
+                if nums2[0] >= nums1[i]:
+                    continue
+                else:
+                    tmp_array.append(nums1[i])
+                    nums1[i] = nums2.pop(0)
+
+        for i in range(m, m + n):
+            if len(tmp_array) != 0 and len(nums2) != 0:
+                if tmp_array[0] <= nums2[0]:
+                    nums1[i] = tmp_array.pop(0)
+                else:
+                    nums1[i] = nums2.pop(0)
+            elif len(tmp_array) != 0 and len(nums2) == 0:
+                nums1[i] = tmp_array.pop(0)
+            else:
                 nums1[i] = nums2.pop(0)
 
-        # nums1 = sorted(nums1)
 
         print(f'Tmp_array: {tmp_array}')
         print(f'nums1: {nums1}')
@@ -31,7 +52,8 @@ class Solution:
 if __name__ == '__main__':
     s = Solution()
     # s.merge(nums1=[1, 2, 3, 0, 0, 0], m=3, nums2=[2, 5, 6], n=3)
-    s.merge(nums1=[0, 0, 3, 0, 0, 0, 0, 0, 0], m=3, nums2=[-1, 1, 1, 1, 2, 3], n=6)
+    s.merge(nums1=[0, 0, 3, 0, 0, 0, 0, 0, 0], m=3,
+            nums2=[-1, 1, 1, 1, 2, 3], n=6)
 
 # You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n,
 # representing the number of elements in nums1 and nums2 respectively.
