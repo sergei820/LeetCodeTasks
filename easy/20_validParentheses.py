@@ -1,6 +1,7 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
+        brackets_dict = {')': '(', '}': '{', ']': '['}
 
         for bracket in s:
             if len(stack) == 0 and bracket in ')}]':
@@ -9,14 +10,19 @@ class Solution:
                 stack.append(bracket)
                 continue
 
-            if bracket == ')' and stack[-1] == '(':
-                stack.pop()
-            elif bracket == ']' and stack[-1] == '[':
-                stack.pop()
-            elif bracket == '}' and stack[-1] == '{':
+            if bracket in brackets_dict.keys() and stack[-1] == brackets_dict[bracket]:
                 stack.pop()
             else:
                 stack.append(bracket)
+
+            # if bracket == ')' and stack[-1] == '(':
+            #     stack.pop()
+            # elif bracket == ']' and stack[-1] == '[':
+            #     stack.pop()
+            # elif bracket == '}' and stack[-1] == '{':
+            #     stack.pop()
+            # else:
+            #     stack.append(bracket)
 
         return len(stack) == 0
 
