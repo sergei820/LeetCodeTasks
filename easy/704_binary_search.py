@@ -1,15 +1,12 @@
-# 704. Binary Search
-# Easy
 from typing import List
+
+"""# 704. Binary Search
+# Easy
 
 # Task from scratch (for future practice)
 
 # class Solution:
 #     def search(self, nums: List[int], target: int) -> int:
-
-# s = Solution()
-# print(s.search(nums = [-1,0,3,5,9,12], target = 9))
-# print(s.search(nums = [-1,0,3,5,9,12], target = 2))
 
 # Given an array of integers nums which is sorted in ascending order, and an integer target,
 # write a function to search target in nums. If target exists, then return its index.
@@ -31,7 +28,7 @@ from typing import List
 # 1 <= nums.length <= 104
 # -104 < nums[i], target < 104
 # All the integers in nums are unique.
-# nums is sorted in ascending order.
+# nums is sorted in ascending order."""
 
 
 ############################## SOLUTIONS ##############################
@@ -45,10 +42,14 @@ from typing import List
 #             return nums.index(target)
 
 # Solution 2
+
+    # O(log n)
+
     # Runtime 0ms
     # Beats 100.00%
     # Memory 20.53MB
     # Beats 53.73%
+
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         low = 0
@@ -77,9 +78,6 @@ class Solution:
 
         print("Value doesn't present in the list")
         return -1
-
-
-
 
 
 s = Solution()
