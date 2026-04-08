@@ -53,6 +53,11 @@ def guess(num: int) -> int:
         return 0
 
 
+# O(log n)
+# Runtime 41ms
+# Beats 77.71%
+# Memory 19.23MB
+# Beats 47.70%
 class Solution:
     def guessNumber(self, n: int) -> int:
         low = 1
