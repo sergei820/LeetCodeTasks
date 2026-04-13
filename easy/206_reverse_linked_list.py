@@ -74,7 +74,6 @@ class Solution:
         # current = 1
         # next = 2
 
-
         while current:
             # current = 1
             next = current.next # 2
@@ -83,9 +82,6 @@ class Solution:
             current = next
 
         return prev # because current made the last step 5 -> None
-
-
-
 
 
 s = Solution()
