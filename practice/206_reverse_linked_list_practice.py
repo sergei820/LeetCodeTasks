@@ -39,60 +39,45 @@ class ListNode:
         self.next = next
 
 
-# current.val = 1
-# current.next.val = 2
+def build_linked_list(l: List) -> ListNode | None:
+    if not l:
+        return None
 
-
-def build_linked_list(l: List) -> ListNode:
-    head = first = ListNode(l[0])
-
-    for i in range(1, len(l)):
-        head.next = ListNode(l[i])
-        head = head.next
-
-    return first
-
-
-def print_linked_list(head: ListNode):
+    head = ListNode(l[0])
     current = head
-    result = []
-    if current:
-        result.append(current.val)
+    for i in range(1, len(l)):
+        current.next = ListNode(l[i])
+        current = current.next
 
-    while current.next:
-        result.append(current.next.val)
+    return head
+
+
+def print_linked_list(head: ListNode) -> None:
+    result = []
+    result.append(head.val)
+    current = head.next
+    while current:
+        result.append(current.val)
         current = current.next
 
     print(result)
 
 
-# Runtime 0ms
-# Beats 100.00%
-# Memory 20.60MB
-# Beats 38.96%
-
-# O(n)
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         current = head
         prev = None
 
-        # None -> 1 -> 2 -> 3 -> 4 -> 5
-        # prev = None
-        # current = 1
-        # next = 2
-
+        # None -> 1 -> 2 -> 3 -> 4 -> 5 -> None
         while current:
-            # current = 1
-            next = current.next # 2
-            current.next = prev # None - revert link
+            next = current.next  # 1 -> 2
+            current.next = prev  # None <- 1
             prev = current
             current = next
 
-        return prev # because current made the last step 5 -> None
+        return prev
 
 
 s = Solution()
-linked_list = build_linked_list([1,2,3,4,5])
-print_linked_list(linked_list)
-print_linked_list(s.reverseList(linked_list))
+# print_linked_list(build_linked_list([1, 2, 3, 4, 5]))
+print_linked_list(s.reverseList(build_linked_list([1, 2, 3, 4, 5])))
