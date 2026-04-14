@@ -7,7 +7,7 @@ class Solution:
 You are climbing a staircase. It takes n steps to reach the top.
 Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
 
- Example 1:
+Example 1:
 Input: n = 2
 Output: 2
 Explanation: There are two ways to climb to the top.
@@ -34,6 +34,7 @@ Constraints:
 # Memory 19.31MB
 # Beats 27.17%
 
+# O(n^2)
 class Solution:
     def climbStairs(self, n: int, cache = None) -> int:
         if cache is None:
